@@ -334,8 +334,12 @@ module.exports = function(list) {
       return (
         (list.filtered && list.searched && item.found && item.filtered) ||
         (list.filtered && !list.searched && item.filtered) ||
-        (!list.filtered && list.searched && item.found) ||
-        (!list.filtered && !list.searched)
+        (!list.filtered && list.searched && item.found)
+	/* Remove this line so, by default, no events are shown
+	   For large lists, this starts off with hundreds of events (thousands of nodes)
+	   Also, while searching, no match -> nothing, not everything (again, cheaper)
+	 */
+        //(!list.filtered && !list.searched)
       );
     };
 
